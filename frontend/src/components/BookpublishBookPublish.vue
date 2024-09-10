@@ -19,7 +19,7 @@
             <String label="Title" v-model="value.title" :editMode="editMode" :inputUI="''"/>
             <String label="Contents" v-model="value.contents" :editMode="editMode" :inputUI="''"/>
             <String label="ImageUrl" v-model="value.imageUrl" :editMode="editMode" :inputUI="''"/>
-            <Number label="Price" v-model="value.price" :editMode="editMode" :inputUI="''"/>
+            <Number label="Price" v-model="value.price" :editMode="editMode" :inputUI="''"  />
             <Number label="MemberId" v-model="value.memberId" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
@@ -60,7 +60,7 @@
                     text
                     @click="save"
                 >
-                    UseAi
+                    UseAI
                 </v-btn>
                 <v-btn
                     color="primary"

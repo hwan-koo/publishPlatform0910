@@ -47,7 +47,5 @@ export default {
 };
 </script>
 <style>
-*{
-    font-family:  !important;
-}
+
 </style>
