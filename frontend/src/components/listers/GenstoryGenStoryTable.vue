@@ -69,8 +69,6 @@
                     { text: "id", value: "id" },
                     { text: "story", value: "story" },
                     { text: "bookId", value: "bookId" },
-                    { text: "bookId", value: "bookId" },
-                    { text: "bookId", value: "bookId" },
                 ],
             genStory : [],
             newValue: {},
@@ -89,8 +87,6 @@
 
             this.newValue = {
                 'story': '',
-                'bookId': 0,
-                'bookId': 0,
                 'bookId': 0,
             }
         },

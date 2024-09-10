@@ -22,10 +22,6 @@ public class GenStory {
 
     private Long bookId;
 
-    private Long bookId;
-
-    private Long bookId;
-
     @PostPersist
     public void onPostPersist() {
         StoryGenerated storyGenerated = new StoryGenerated(this);

@@ -69,8 +69,6 @@
                     { text: "id", value: "id" },
                     { text: "imageUrl", value: "imageUrl" },
                     { text: "bookId", value: "bookId" },
-                    { text: "bookId", value: "bookId" },
-                    { text: "bookId", value: "bookId" },
                 ],
             genImage : [],
             newValue: {},
@@ -89,8 +87,6 @@
 
             this.newValue = {
                 'imageUrl': '',
-                'bookId': 0,
-                'bookId': 0,
                 'bookId': 0,
             }
         },
