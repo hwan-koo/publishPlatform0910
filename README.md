@@ -54,11 +54,11 @@ mvn spring-boot:run
 ```
 - genstory
 ```
- http :8088/genStories id="id" story="story" bookId="bookId" bookId="bookId" bookId="bookId" 
+ http :8088/genStories id="id" story="story" bookId="bookId" 
 ```
 - genimage
 ```
- http :8088/genImages id="id" imageUrl="imageUrl" bookId="bookId" bookId="bookId" bookId="bookId" 
+ http :8088/genImages id="id" imageUrl="imageUrl" bookId="bookId" 
 ```
 - pay
 ```

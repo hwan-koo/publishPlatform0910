@@ -18,8 +18,6 @@
         <v-card-text>
             <String label="ImageUrl" v-model="value.imageUrl" :editMode="editMode" :inputUI="''"/>
             <Number label="BookId" v-model="value.bookId" :editMode="editMode" :inputUI="''"/>
-            <Number label="BookId" v-model="value.bookId" :editMode="editMode" :inputUI="''"/>
-            <Number label="BookId" v-model="value.bookId" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions>

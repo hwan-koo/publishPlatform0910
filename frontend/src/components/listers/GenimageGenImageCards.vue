@@ -111,8 +111,6 @@
             me.newValue = {
                 'imageUrl': '',
                 'bookId': 0,
-                'bookId': 0,
-                'bookId': 0,
             }
         },
         methods:{

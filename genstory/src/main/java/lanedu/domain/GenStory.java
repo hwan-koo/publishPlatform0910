@@ -20,6 +20,9 @@ public class GenStory {
 
     private String story;
 
+    private Long bookId;
+
+
     @PostPersist
     public void onPostPersist() {
         StoryGenerated storyGenerated = new StoryGenerated(this);
