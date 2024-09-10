@@ -19,7 +19,7 @@
             <String label="Title" v-model="value.title" :editMode="editMode" :inputUI="''"/>
             <String label="Contents" v-model="value.contents" :editMode="editMode" :inputUI="''"/>
             <String label="ImageUrl" v-model="value.imageUrl" :editMode="editMode" :inputUI="''"/>
-            <Number label="Price" v-model="value.price" :editMode="editMode" :inputUI="''"  />
+            <Number label="Price" v-model="value.price" :editMode="editMode" :inputUI="''"/>
             <Number label="MemberId" v-model="value.memberId" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
@@ -44,27 +44,6 @@
                 <v-btn
                     color="primary"
                     text
-                    @click="save"
-                >
-                    Delete
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    Edit
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    UseAI
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
                     @click="remove"
                     v-if="!editMode"
                 >
@@ -82,6 +61,36 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="delete"
+            >
+                Delete
+            </v-btn>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openEdit"
+            >
+                Edit
+            </v-btn>
+            <v-dialog v-model="editDiagram" width="500">
+                <EditCommand
+                    @closeDialog="closeEdit"
+                    @edit="edit"
+                ></EditCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="useAi"
+            >
+                UseAi
+            </v-btn>
         </v-card-actions>
 
         <v-snackbar
@@ -119,6 +128,7 @@
                 timeout: 5000,
                 text: '',
             },
+            editDiagram: false,
         }),
 	async created() {
         },
@@ -215,6 +225,71 @@
             },
             change(){
                 this.$emit('input', this.value);
+            },
+            async delete() {
+                try {
+                    if(!this.offline) {
+                        await axios.delete(axios.fixUrl(this.value._links['delete'].href))
+                    }
+
+                    this.editMode = false;
+                    this.isDelete = true;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async edit(params) {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['/edit'].href), params)
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                    this.closeEdit();
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            openEdit() {
+                this.editDiagram = true;
+            },
+            closeEdit() {
+                this.editDiagram = false;
+            },
+            async useAi() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['/useai'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }
