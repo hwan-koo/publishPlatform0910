@@ -36,7 +36,9 @@ public class GenStory {
     //<<< Clean Arch / Port Method
     public static void generateStory(AiUsed aiUsed) {
         GenStory genStory = new GenStory();
-        
+        System.out.println("1");
+        repository().save(genStory);
+
         //implement business logic here:
 
         /** Example 1:  new item 
