@@ -5,9 +5,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lanedu.BookpublishApplication;
-import lanedu.domain.AiUsed;
-import lanedu.domain.Deleted;
-import lanedu.domain.Edited;
 import lanedu.domain.Published;
 import lombok.Data;
 
@@ -37,20 +34,8 @@ public class BookPublish {
         published.publishAfterCommit();
     }
 
-    @PostUpdate
-    public void onPostUpdate() {
-        Edited edited = new Edited(this);
-        edited.publishAfterCommit();
-
-        AiUsed aiUsed = new AiUsed(this);
-        aiUsed.publishAfterCommit();
-    }
-
-    @PostRemove
-    public void onPostRemove() {
-        Deleted deleted = new Deleted(this);
-        deleted.publishAfterCommit();
-    }
+    @PreRemove
+    public void onPreRemove() {}
 
     public static BookPublishRepository repository() {
         BookPublishRepository bookPublishRepository = BookpublishApplication.applicationContext.getBean(
@@ -58,6 +43,34 @@ public class BookPublish {
         );
         return bookPublishRepository;
     }
+
+    //<<< Clean Arch / Port Method
+    public void delete() {
+        //implement business logic here:
+
+        Deleted deleted = new Deleted(this);
+        deleted.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void edit(EditCommand editCommand) {
+        //implement business logic here:
+
+        Edited edited = new Edited(this);
+        edited.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void useAi() {
+        //implement business logic here:
+
+        AiUsed aiUsed = new AiUsed(this);
+        aiUsed.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
 
     //<<< Clean Arch / Port Method
     public static void contentsComplete(ImageGenerated imageGenerated) {
