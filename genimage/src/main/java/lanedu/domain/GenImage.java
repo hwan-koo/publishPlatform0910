@@ -22,10 +22,6 @@ public class GenImage {
 
     private Long bookId;
 
-    private Long bookId;
-
-    private Long bookId;
-
     @PostPersist
     public void onPostPersist() {
         ImageGenerated imageGenerated = new ImageGenerated(this);

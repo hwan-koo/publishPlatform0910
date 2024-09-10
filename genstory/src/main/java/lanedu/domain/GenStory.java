@@ -20,12 +20,6 @@ public class GenStory {
 
     private String story;
 
-    private Long bookId;
-
-    private Long bookId;
-
-    private Long bookId;
-
     @PostPersist
     public void onPostPersist() {
         StoryGenerated storyGenerated = new StoryGenerated(this);
@@ -41,6 +35,8 @@ public class GenStory {
 
     //<<< Clean Arch / Port Method
     public static void generateStory(AiUsed aiUsed) {
+        GenStory genStory = new GenStory();
+        
         //implement business logic here:
 
         /** Example 1:  new item 
