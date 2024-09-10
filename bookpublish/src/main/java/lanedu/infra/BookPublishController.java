@@ -21,23 +21,23 @@ public class BookPublishController {
     BookPublishRepository bookPublishRepository;
 
     @RequestMapping(
-        value = "/bookPublishes/{id}/delete",
+        value = "/bookPublishes/{id}//delete",
         method = RequestMethod.DELETE,
         produces = "application/json;charset=UTF-8"
     )
-    public BookPublish delete(
+    public BookPublish deleteItem(
         @PathVariable(value = "id") Long id,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
-        System.out.println("##### /bookPublish/delete  called #####");
+        System.out.println("##### /bookPublish/deleteItem  called #####");
         Optional<BookPublish> optionalBookPublish = bookPublishRepository.findById(
             id
         );
 
         optionalBookPublish.orElseThrow(() -> new Exception("No Entity Found"));
         BookPublish bookPublish = optionalBookPublish.get();
-        bookPublish.delete();
+        bookPublish.deleteItem();
 
         bookPublishRepository.delete(bookPublish);
         return bookPublish;
