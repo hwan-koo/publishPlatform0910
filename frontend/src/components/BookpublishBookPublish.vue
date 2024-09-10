@@ -65,9 +65,9 @@
                 v-if="!editMode"
                 color="primary"
                 text
-                @click="delete"
+                @click="deleteItem"
             >
-                Delete
+                DeleteItem
             </v-btn>
             <v-btn
                 v-if="!editMode"
@@ -226,10 +226,10 @@
             change(){
                 this.$emit('input', this.value);
             },
-            async delete() {
+            async deleteItem() {
                 try {
                     if(!this.offline) {
-                        await axios.delete(axios.fixUrl(this.value._links['delete'].href))
+                        await axios.delete(axios.fixUrl(this.value._links['deleteItem'].href))
                     }
 
                     this.editMode = false;

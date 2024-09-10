@@ -14,8 +14,8 @@ public class BookPublishHateoasProcessor
     public EntityModel<BookPublish> process(EntityModel<BookPublish> model) {
         model.add(
             Link
-                .of(model.getRequiredLink("self").getHref() + "/delete")
-                .withRel("delete")
+                .of(model.getRequiredLink("self").getHref() + "//delete")
+                .withRel("/delete")
         );
         model.add(
             Link

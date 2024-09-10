@@ -45,7 +45,7 @@ public class BookPublish {
     }
 
     //<<< Clean Arch / Port Method
-    public void delete() {
+    public void deleteItem() {
         //implement business logic here:
 
         Deleted deleted = new Deleted(this);
