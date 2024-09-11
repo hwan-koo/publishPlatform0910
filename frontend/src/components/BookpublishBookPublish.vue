@@ -1,5 +1,5 @@
 <template>
-    <v-card style="width:450px; height:100%;" outlined>
+    <v-card style="width:550px; height:100%;" outlined>
         <template slot="progress">
             <v-progress-linear
                     color="primary-darker-1"

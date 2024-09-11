@@ -21,7 +21,7 @@ public class BookPublishController {
     BookPublishRepository bookPublishRepository;
 
     @RequestMapping(
-        value = "/bookPublishes/{id}//delete",
+        value = "/bookPublishes/{id}/delete",
         method = RequestMethod.DELETE,
         produces = "application/json;charset=UTF-8"
     )
@@ -44,7 +44,7 @@ public class BookPublishController {
     }
 
     @RequestMapping(
-        value = "/bookPublishes/{id}//edit",
+        value = "/bookPublishes/{id}/edit",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
@@ -68,23 +68,22 @@ public class BookPublishController {
     }
 
     @RequestMapping(
-        value = "/bookPublishes/{id}//useai",
+        value = "/bookPublishes/{id}/useai",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
     public BookPublish useAi(
         @PathVariable(value = "id") Long id,
+        @RequestBody String contents,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
         System.out.println("##### /bookPublish/useAi  called #####");
-        Optional<BookPublish> optionalBookPublish = bookPublishRepository.findById(
-            id
-        );
+        Optional<BookPublish> optionalBookPublish = bookPublishRepository.findById(id);
 
         optionalBookPublish.orElseThrow(() -> new Exception("No Entity Found"));
         BookPublish bookPublish = optionalBookPublish.get();
-        bookPublish.useAi();
+        bookPublish.useAi(contents);
 
         bookPublishRepository.save(bookPublish);
         return bookPublish;

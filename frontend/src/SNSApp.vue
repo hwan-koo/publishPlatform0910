@@ -3,46 +3,29 @@
 <template>
     <v-app id="inspire">
         <div>
-            <v-app-bar color="primary" app clipped-left flat>
-                <v-toolbar-title>
-                    <span class="second-word font uppercase"
-                        style="font-weight:700;"
-                    >
-                        <v-app-bar-nav-icon
-                            @click="openSideBar()"
-                            style="z-index:1;
-                            height:56px;
-                            width:30px;
-                            margin-right:10px;
-                            font-weight:300;
-                            font-size:55px;"
-                        >
-                            <div style="line-height:100%;">≡</div>
-                        </v-app-bar-nav-icon>
-                    </span>
-                </v-toolbar-title>
-                <span v-if="urlPath!=null" 
-                    class="mdi mdi-home" 
-                    key="" 
+            <v-app-bar color="primary" app clipped-left flat >
+                
+                <div style="display: flex; justify-content: center; align-items: center;">
+    <img src="@/assets/logo.png" alt="PNG Image" key="" 
                     to="/" 
                     @click="goHome()"
-                    style="margin-left:10px; font-size:20px; cursor:pointer;"
-		        ></span> 
+                    style="margin-top:10px; font-size:20px; cursor:pointer;"/>
+                    
+                    <span style="font-weight: bold; font-size: 32px; margin-left: 10px; margin-top: 10px;">
+                        꿈꾸는 서재
+                    </span>
+  </div>
                 <v-spacer></v-spacer>
-
-            </v-app-bar>
-
-            <v-navigation-drawer app clipped flat v-model="sideBar">
-                <v-list>
+                <v-list color="primary" style="display: flex; flex-direction: row;">
                     <v-list-item
                         class="px-2"
                         key="bookPublishes"
                         to="/bookpublishes/bookPublishes"
                         @click="changeUrl()"
                         color="primary"
-                        style="font-weight:700;"
+                        style="font-weight:700; "
                     >
-                        BookPublish
+                        내 작품
                     </v-list-item>
 
 
@@ -52,74 +35,17 @@
                         to="/bookpurchases/bookPurchases"
                         @click="changeUrl()"
                         color="primary"
-                        style="font-weight:700;"
+                        style="font-weight:700; "
                     >
-                        BookPurchase
+                        내 서재
                     </v-list-item>
-
-
-                    <v-list-item
-                        class="px-2"
-                        key="members"
-                        to="/members/members"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
-                    >
-                        Member
-                    </v-list-item>
-
-
-                    <v-list-item
-                        class="px-2"
-                        key="bookReviews"
-                        to="/reviews/bookReviews"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
-                    >
-                        BookReview
-                    </v-list-item>
-
-
-                    <v-list-item
-                        class="px-2"
-                        key="genStories"
-                        to="/genstories/genStories"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
-                    >
-                        GenStory
-                    </v-list-item>
-
-
-                    <v-list-item
-                        class="px-2"
-                        key="genImages"
-                        to="/genimages/genImages"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
-                    >
-                        GenImage
-                    </v-list-item>
-
-
-                    <v-list-item
-                        class="px-2"
-                        key="paymenthistories"
-                        to="/pays/paymenthistories"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
-                    >
-                        Paymenthistory
-                    </v-list-item>
-
 
                 </v-list>
-            </v-navigation-drawer>
+                
+
+            </v-app-bar>
+
+            
         </div>
 
         <v-main>
@@ -127,14 +53,17 @@
                 <router-view></router-view>
             </v-container>
             <v-container style="padding:0px;" v-else fluid>
-                <div style="width:100%; margin:0px 0px 20px 0px; position: relative;">
+                <div>
+                    홈입니다!
+                </div>
+                <!-- <div style="width:100%; margin:0px 0px 20px 0px; position: relative;">
                     <v-img style="width:100%; height:300px;"
                         src=""
                     ></v-img>
                     <div class="App-main-text-overlap"></div>
                     <div class="App-sub-text-overlap"></div>
-                </div>
-                <v-row>
+                </div> -->
+                <!-- <v-row>
                     <v-col cols="4" class="d-flex justify-center" v-for="(aggregate, index) in aggregate" :key="index">
                         <div 
                             class="flip-card"
@@ -177,7 +106,7 @@
                             </div>
                         </div>
                     </v-col>
-                </v-row>
+                </v-row> -->
             </v-container>
         </v-main>
     </v-app>
@@ -266,9 +195,7 @@ export default {
     },
 
     methods: {
-        openSideBar(){
-            this.sideBar = !this.sideBar
-        },
+         
         changeUrl() {
             var path = document.location.href.split("#/")
             this.urlPath = path[1];

@@ -63,10 +63,11 @@ public class BookPublish {
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
-    public void useAi() {
+    public void useAi(String contents) {
         //implement business logic here:
 
         AiUsed aiUsed = new AiUsed(this);
+        aiUsed.setContents(contents);
         aiUsed.publishAfterCommit();
     }
 
