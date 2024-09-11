@@ -54,7 +54,7 @@ public class BookPublish {
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
-    public void edit(EditCommand editCommand) {
+    public void editItem(EditItemCommand editItemCommand) {
         //implement business logic here:
 
         Edited edited = new Edited(this);

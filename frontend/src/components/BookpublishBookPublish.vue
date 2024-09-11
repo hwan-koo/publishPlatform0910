@@ -73,15 +73,15 @@
                 v-if="!editMode"
                 color="primary"
                 text
-                @click="openEdit"
+                @click="openEditItem"
             >
-                Edit
+                EditItem
             </v-btn>
-            <v-dialog v-model="editDiagram" width="500">
-                <EditCommand
-                    @closeDialog="closeEdit"
-                    @edit="edit"
-                ></EditCommand>
+            <v-dialog v-model="editItemDiagram" width="500">
+                <EditItemCommand
+                    @closeDialog="closeEditItem"
+                    @editItem="editItem"
+                ></EditItemCommand>
             </v-dialog>
             <v-btn
                 v-if="!editMode"
@@ -128,7 +128,7 @@
                 timeout: 5000,
                 text: '',
             },
-            editDiagram: false,
+            editItemDiagram: false,
         }),
 	async created() {
         },
@@ -246,7 +246,7 @@
                     }
                 }
             },
-            async edit(params) {
+            async editItem(params) {
                 try {
                     if(!this.offline) {
                         var temp = await axios.put(axios.fixUrl(this.value._links['/edit'].href), params)
@@ -256,7 +256,7 @@
                     }
 
                     this.editMode = false;
-                    this.closeEdit();
+                    this.closeEditItem();
                 } catch(e) {
                     this.snackbar.status = true
                     if(e.response && e.response.data.message) {
@@ -266,11 +266,11 @@
                     }
                 }
             },
-            openEdit() {
-                this.editDiagram = true;
+            openEditItem() {
+                this.editItemDiagram = true;
             },
-            closeEdit() {
-                this.editDiagram = false;
+            closeEditItem() {
+                this.editItemDiagram = false;
             },
             async useAi() {
                 try {
