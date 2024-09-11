@@ -229,7 +229,8 @@
             async deleteItem() {
                 try {
                     if(!this.offline) {
-                        await axios.delete(axios.fixUrl(this.value._links['deleteItem'].href))
+                        // await axios.delete(axios.fixUrl(this.value._links['deleteItem'].href))
+                        await axios.delete(axios.fixUrl(this.value._links.self.href))
                     }
 
                     this.editMode = false;
