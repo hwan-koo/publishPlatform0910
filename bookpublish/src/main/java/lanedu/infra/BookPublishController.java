@@ -48,20 +48,20 @@ public class BookPublishController {
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
-    public BookPublish edit(
+    public BookPublish editItem(
         @PathVariable(value = "id") Long id,
-        @RequestBody EditCommand editCommand,
+        @RequestBody EditItemCommand editItemCommand,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
-        System.out.println("##### /bookPublish/edit  called #####");
+        System.out.println("##### /bookPublish/editItem  called #####");
         Optional<BookPublish> optionalBookPublish = bookPublishRepository.findById(
             id
         );
 
         optionalBookPublish.orElseThrow(() -> new Exception("No Entity Found"));
         BookPublish bookPublish = optionalBookPublish.get();
-        bookPublish.edit(editCommand);
+        bookPublish.editItem(editItemCommand);
 
         bookPublishRepository.save(bookPublish);
         return bookPublish;
